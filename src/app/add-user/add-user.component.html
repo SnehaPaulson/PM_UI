@@ -1,0 +1,100 @@
+<form  class="form-group" [formGroup]='addGroup' (submit)="AddUser()">
+<div class="row">
+  <div class="col-sm-6">
+    <label for="firstName">First Name:</label>
+    <input  type="text" class="form-control" formControlName='firstName' [(ngModel)]="user.firstName" name="firstName"  required>
+    
+  </div>
+  <div class="col-sm-6">
+    <label for="pwd">Last Name:</label>
+    <input  type="text" class="form-control"  formControlName='lastName' [(ngModel)]="user.lastName" name="lastName"  >
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-sm-6">
+      <label for="employeeID">Employee ID:</label>
+      <input  type="text" class="form-control" formControlName='employeeID' [(ngModel)]="user.employeeID" name="employeeID"  >
+    </div>
+    <div class="col-sm-6">
+        <input type="submit" [disabled]="!addGroup.valid" class="btn btn-primary" value="Add" >&nbsp;&nbsp;
+        <input type="button" class="btn btn-secondary"  value="reset"  (click)="resetForm();">
+  </div>
+  </div>
+
+</form>
+<div class="row mt-2">
+    <div class="col-sm-6">
+      <input type="text" id="searchUser" class="form-control" [(ngModel)]="filterUser" placeholder="Search..." />
+    </div>
+    <div class="col-sm-6">
+      <label class="form-control-static">Sort:</label>&nbsp;
+      <input type="button" value="First Name" class="btn btn-info" (click)="sortUsers('firstName')" ng-required="true"/>&nbsp;
+      <input type="button" value="Last Name" class="btn btn-info" (click)="sortUsers('lastName')" />&nbsp;
+      <input type="button" value="Id" class="btn btn-info" (click)="sortUsers('employeeID')" />
+    </div>
+  </div>
+<div class="row mb-2">
+    <div  class="col-sm-4"><b>First Name</b></div>
+    <div  class="col-sm-3"><b>Last Name</b></div>
+    <div  class="col-sm-3"><b>Employee ID</b></div>
+    <div></div>
+  </div>
+<div *ngFor="let user of users |  searchUser : filterUser : 'firstName'">
+    <div class="row mb-2 bg-light">
+        <div  class="col-sm-4">{{user.firstName}}</div>
+        <div  class="col-sm-3">{{user.lastName}}</div>
+        <div  class="col-sm-3">{{user.employeeID}}</div>
+        <div class="col-sm-1"> <button type="button" class="btn btn-info btn-sm " data-toggle="modal" data-target="#myModal" (click)="openModalDialog(user)">Edit</button></div>
+          <div class="col-sm-1">   <button type="button" class="btn btn-info btn-sm" (click)="deleteUser(user.userID)" >Delete</button></div>
+      </div>
+</div>
+
+
+<!-- modal -->
+<div class="modal mainpage" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+    
+      <div class="modal-dialog" role="document">
+      
+        <div class="modal-content">
+        
+          <div class="modal-header popupHeader">  Edit Task 
+            <button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span aria-hidden="true">&times;</span></button>
+            
+          </div>
+    
+          <!-- modal-body -->
+          <div class="modal-body popupBody">
+            <div class="container">
+                <form  class="form-group" (submit)="editUser()">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label for="firstName">First Name:</label>
+                        <input  type="text" class="form-control" [(ngModel)]="userModal.firstName" name="firstName"  >
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="pwd">Last Name:</label>
+                        <input  type="text" class="form-control" [(ngModel)]="userModal.lastName" name="lastName"  >
+                      </div>
+                      </div>
+                      <div class="row">
+                      <div class="col-sm-6">
+                          <label for="employeeID">Employee ID:</label>
+                          <input  type="text" class="form-control" [(ngModel)]="userModal.employeeID" name="employeeID"  >
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="submit" class="btn btn-primary" value="Save" >&nbsp;&nbsp;
+                            <!-- <input type="button" class="btn btn-secondary"  value="reset"  (click)="resetModalForm();"> -->
+                      </div>
+                      </div>
+                    
+                    </form>
+          </div>
+          </div>
+    
+          <!-- modal-footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="closeModalDialog()" >Close</button>
+          </div>
+        </div>
+      </div>
+    </div>

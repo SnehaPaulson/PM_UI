@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.mainpage{
+    background-color:rgba(205, 242, 252, 0.6);
+}
+.navpage{
+    background-color:rgba(167, 209, 174, 0.6);
+    font-weight: bold;
+    font-size: 16;
+}
+
+.popupHeader{
+    background-color:rgba(228, 177, 39, 0.6);
+    font-weight: bold;
+    font-size: 16;
+}
+.popupBody{
+    background-color:rgba(235, 200, 168, 0.6);
+    
+}
+.table {
+    background-color:rgba(196, 24, 24, 0.911);
+    width:100%;
+  }
+  .label{
+      text-align: right;
+      font-weight: bold;
+     
+  }
+  .disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .inputbox {
+    border: 3px solid #555;
+    
+   
+}

@@ -1,0 +1,58 @@
+
+
+   <form  class="form-group"  (submit)="AddTask()">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+           <label for="projectID">Project:</label>
+            <select [(ngModel)]="taskData.projectID" name="projectID">
+                    <option *ngFor="let project of projects" [ngValue]="project.projectID">{{project.project}}</option>
+                  </select> 
+            
+          </div>
+          <div class="col-sm-6">
+            <label for="task">Task:</label>
+            <input  type="text" class="form-control" [(ngModel)]="taskData.task" name="task"  >
+          </div>
+          </div>
+          <div class="row mb-2">
+          <div class="col-sm-6">
+              <label for="priority">Priority</label>
+              <input type="range" [(ngModel)]="taskData.priority" id="rangePriority" name="priority" max="30" min="0" step="1" value="0" oninput="rangeDisplay.value = rangePriority.value" required>
+              <output id="rangeDisplay"></output>
+            </div>
+            <div class="col-sm-6">
+                     <label for="parentTask">Parent Task:</label>
+                    <select [(ngModel)]="taskData.parentTask" name="parentTask">
+                            <option *ngFor="let task of tasks" [ngValue]="task.task">{{task.task}}</option>
+                          </select>
+          </div>
+          </div>
+          <div class="row mb-2">
+                <div class="col-sm-6">
+                  <label for="startDate">Start Date:</label>
+                  <input type="date" class="form-control" [(ngModel)]="taskData.startDate" name="startDate" size="30">
+                  
+                </div>
+                <div class="col-sm-6">
+                  <label for="endDate">End Date:</label>
+                  <input type="date" class="form-control" [(ngModel)]="taskData.endDate" name="endDate" size="30" required>
+                </div>
+                </div>
+                <div class="row mb-2">
+                        <div class="col-sm-6">
+                                <label for="user">User:</label>
+                                <select [(ngModel)]="taskData.userID" name="user">
+                                        <option *ngFor="let user of users" [ngValue]="user.userID">{{user.firstName}}</option>
+                                      </select>
+                          
+                        </div>
+                        <div class="col-sm-6">
+                                <input type="submit" class="btn btn-primary" value="add" >&nbsp;&nbsp;
+                                <input type="button" class="btn btn-secondary"  value="reset"  (click)="resetForm();">
+                        </div>
+                        </div>
+
+               
+        
+        </form>
+       
